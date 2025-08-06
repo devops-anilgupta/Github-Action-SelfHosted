@@ -1,43 +1,23 @@
-name: Run Python Script on EC2
+name: Run Python Script
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  run-python:
+  run-script:
     runs-on: self-hosted
 
     steps:
-      - name: ✅ Step 0 - List repo files
-        run: |
-          echo "📁 All repo files:"
-          find . -type f
-
-      - name: ✅ Step 1 - Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ✅ Step 2 - Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: ✅ Step 3 - Verify Python & pip
-        run: |
-          python3 --version
-          pip3 --version
-
-      - name: ✅ Step 4 - Install dependencies
-        run: pip3 install requests
-
-      - name: ✅ Step 5 - Show EC2 IP addresses
-        run: |
-          echo "🌐 EC2 Private IP: $(hostname -I)"
-          echo "🌍 EC2 Public IP: $(curl -s ifconfig.me)"
-
-      - name: ✅ Step 6 - Run Python script
-        run: |
-          echo "📁 Current dir: $(pwd)"
-          ls -la
-          echo "▶️ Running script..."
-          python3 my_script.py
+      - name: Run script
+        run: python my_script.py
