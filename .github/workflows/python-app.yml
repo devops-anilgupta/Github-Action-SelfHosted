@@ -11,13 +11,21 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
+      - name: ✅ Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: ✅ Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Run script
-        run: python my_script.py
+      - name: ✅ Install dependencies
+        run: pip3 install requests
+
+      - name: ✅ List all files
+        run: find . -type f
+
+      - name: ✅ Run Python script
+        run: |
+          echo "▶️ Running script..."
+          python3 my_script.py
