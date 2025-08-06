@@ -9,6 +9,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: ✅ Step 0 - List repo files
+        run: |
+          echo "📁 All repo files:"
+          find . -type f
+
       - name: ✅ Step 1 - Checkout repo
         uses: actions/checkout@v4
 
@@ -19,25 +24,20 @@ jobs:
 
       - name: ✅ Step 3 - Verify Python & pip
         run: |
-          echo "Python Version:"
-          python3 --version || echo "❌ Python not found"
-          echo "Pip Version:"
-          pip3 --version || echo "❌ Pip not found"
+          python3 --version
+          pip3 --version
 
       - name: ✅ Step 4 - Install dependencies
-        run: |
-          echo "Installing requests..."
-          pip3 install requests || echo "❌ Failed to install requests"
+        run: pip3 install requests
 
-      - name: ✅ Step 5 - Echo EC2 IP addresses
+      - name: ✅ Step 5 - Show EC2 IP addresses
         run: |
           echo "🌐 EC2 Private IP: $(hostname -I)"
-          echo "🌍 EC2 Public IP: $(curl -s ifconfig.me || echo '❌ Failed to fetch public IP')"
+          echo "🌍 EC2 Public IP: $(curl -s ifconfig.me)"
 
-      - name: ✅ Step 6 - Run the Python script
+      - name: ✅ Step 6 - Run Python script
         run: |
-          echo "📁 Current directory: $(pwd)"
-          echo "📄 Files in directory:"
+          echo "📁 Current dir: $(pwd)"
           ls -la
           echo "▶️ Running script..."
-          python3 my_script.py || echo "❌ Python script failed"
+          python3 my_script.py
