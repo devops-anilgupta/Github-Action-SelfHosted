@@ -17,10 +17,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip3 install requests
+
       - name: Echo EC2 instance IP address
         run: |
           echo "🌐 EC2 Private IP Address: $(hostname -I)"
           echo "🌍 EC2 Public IP Address: $(curl -s ifconfig.me)"
 
       - name: Run the Python script
-        run: python my_script.py
+        run: python3 my_script.py
