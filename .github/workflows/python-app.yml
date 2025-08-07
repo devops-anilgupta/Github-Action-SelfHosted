@@ -1,18 +1,16 @@
-name: Test GitHub-Hosted Runner
+name: Test Self-Hosted Runner
 
 on:
   push:
     branches:
-      - "main"
+      - "**"
 
 jobs:
-  test-github-runner:
-    runs-on: [ip-172-31-23-39]
-
+  run-on-ec2:
+    runs-on: self-hosted
     steps:
-      - name: Print environment
-        run: |
-          echo "User: $(whoami)"
-          echo "Shell: $SHELL"
-          which bash
-          env
+      - uses: actions/checkout@v4
+      - run: hostname
+      - run: uname -a
+      - run: echo "Runner name is ${{ runner.name }}"
+      - run: date
