@@ -6,11 +6,14 @@ on:
       - "**"
 
 jobs:
-  run-on-ec2:
-    runs-on: self-hosted
+  test-ec2-runner:
+    runs-on: [self-hosted, Linux, X64]
     steps:
-      - uses: actions/checkout@v4
-      - run: hostname
-      - run: uname -a
-      - run: echo "Runner name is ${{ runner.name }}"
-      - run: date
+      - name: Debug runner environment
+        run: |
+          echo "Runner name: ${{ runner.name }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "User: $(whoami)"
+          echo "Shell: $SHELL"
+          echo "Current directory: $(pwd)"
+          uname -a
