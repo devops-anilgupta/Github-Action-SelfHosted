@@ -10,34 +10,9 @@ jobs:
     runs-on: [self-hosted, Linux, X64]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Print hostname
+      - name: Print environment
         run: |
-          echo "Hostname:"
-          hostname
-
-      - name: Print OS details
-        run: |
-          echo "OS Info:"
-          uname -a
-
-      - name: Show runner name
-        run: |
-          echo "Runner Name: ${{ runner.name }}"
-
-      - name: Show current directory
-        run: |
-          echo "Working Directory:"
-          pwd
-
-      - name: Print date/time
-        run: |
-          echo "Current Date/Time:"
-          date
-
-      - name: List files in directory
-        run: |
-          echo "Files in repo:"
-          ls -al
+          echo "User: $(whoami)"
+          echo "Shell: $SHELL"
+          which bash
+          env
