@@ -1,15 +1,40 @@
-name: Test EC2 Runner
+name: Test Self-Hosted EC2 Runner
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 jobs:
-  build:
-    runs-on: self-hosted
+  test-ec2-runner:
+    runs-on: self-hosted  # Make sure your runner was registered with just "self-hosted" label
     steps:
-      - uses: actions/checkout@v4
-      - name: Run a script
-        run: echo "Hello from self-hosted EC2 runner!"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Print hostname
+        run: |
+          echo "Hostname:"
+          hostname
+
+      - name: Print OS details
+        run: |
+          echo "OS Info:"
+          uname -a
+
+      - name: Show runner name
+        run: |
+          echo "Runner Name: ${{ runner.name }}"
+
+      - name: Show current directory
+        run: |
+          echo "Working Directory:"
+          pwd
+
+      - name: Print date/time
+        run: |
+          echo "Current Date/Time:"
+          date
+
+      - name: List files in directory
+        run: |
+          echo "Files in repo:"
+          ls -al
