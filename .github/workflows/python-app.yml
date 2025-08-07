@@ -1,31 +1,17 @@
-name: Run Python Script
+name: Test EC2 Runner
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  run-script:
-    runs-on: self-hosted
+  test-ec2:
+    runs-on: [self-hosted, linux]  # Match the runner's label exactly
 
     steps:
-      - name: ✅ Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ✅ Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: ✅ Install dependencies
-        run: pip3 install requests
-
-      - name: ✅ List all files
-        run: find . -type f
-
-      - name: ✅ Run Python script
-        run: |
-          echo "▶️ Running script..."
-          python3 my_script.py
+      - name: Run Python script
+        run: python3 my_script.py
