@@ -1,19 +1,18 @@
-name: Test Self-Hosted Runner
+name: Test Self-Hosted EC2 Runner
 
 on:
   push:
     branches:
-      - "**"
+      - "main"
 
 jobs:
   test-ec2-runner:
     runs-on: [self-hosted, Linux, X64]
     steps:
-      - name: Debug runner environment
+      - name: Debug info
         run: |
-          echo "Runner name: ${{ runner.name }} "
+          echo "Runner name: ${{ runner.name }}"
           echo "Runner OS: ${{ runner.os }}"
           echo "User: $(whoami)"
           echo "Shell: $SHELL"
-          echo "Current directory: $(pwd)"
           uname -a
