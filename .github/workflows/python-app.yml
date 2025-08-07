@@ -6,12 +6,10 @@ on:
       - main
 
 jobs:
-  test-ec2:
-    runs-on: [self-hosted, linux]  # Match the runner's label exactly
-
+  build:
+    runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Run a script
+        run: echo "Hello from self-hosted EC2 runner!"
 
-      - name: Run Python script
-        run: python3 my_script.py
