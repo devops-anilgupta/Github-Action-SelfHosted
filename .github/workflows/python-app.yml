@@ -1,13 +1,14 @@
-name: Test Self-Hosted EC2 Runner
+name: Test GitHub-Hosted Runner
 
 on:
-  push:            # Trigger on any code push to any branch
+  push:
     branches:
       - "main"
 
 jobs:
-  test-ec2-runner:
-    runs-on: self-hosted  # Use your self-hosted EC2 runner
+  test-github-runner:
+    runs-on: ubuntu-latest  # ✅ GitHub-hosted runner
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
