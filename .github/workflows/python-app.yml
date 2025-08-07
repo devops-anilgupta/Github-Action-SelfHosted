@@ -12,8 +12,8 @@ jobs:
       - name: Debug info
         shell: powershell
         run: |
-          Write-Host "Anil-->Runner name: ${{ runner.name }}"
-          Write-Host "Runner OS: ${{ runner.os }}"
+          Write-Host "Anil-->Runner name: ${{ runner.name }} "
+          Write-Host "Runner OS: ${{ runner.os }} "
           Write-Host "User: $env:USERNAME"
           Write-Host "Shell: $PSVersionTable.PSEdition"
           Write-Host "OS Version:"
