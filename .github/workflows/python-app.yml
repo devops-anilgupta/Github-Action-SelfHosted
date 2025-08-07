@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-github-runner:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: [ip-172-31-23-39]
 
     steps:
       - name: Print environment
