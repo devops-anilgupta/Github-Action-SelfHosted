@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-github-runner:
-    runs-on: ubuntu-latest  # ✅ GitHub-hosted runner
+    runs-on: self-hosted  # ✅ GitHub-hosted runner
 
     steps:
       - name: Checkout code
