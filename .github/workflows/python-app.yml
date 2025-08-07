@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-ec2-runner:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: self-hosted
     steps:
       - name: Debug info
         run: |
