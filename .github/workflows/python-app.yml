@@ -1,4 +1,4 @@
-name: Test Self-Hosted EC2 Runner
+name: Test Self-Hosted Windows Runner
 
 on:
   push:
@@ -6,13 +6,15 @@ on:
       - "main"
 
 jobs:
-  test-ec2-runner:
-    runs-on: self-hosted
+  test-windows-runner:
+    runs-on: [self-hosted, windows]
     steps:
       - name: Debug info
+        shell: powershell
         run: |
-          echo "Runner name: ${{ runner.name }} "
-          echo "Runner OS: ${{ runner.os }}"
-          echo "User: $(whoami)"
-          echo "Shell: $SHELL"
-          uname -a
+          Write-Host "Runner name: ${{ runner.name }}"
+          Write-Host "Runner OS: ${{ runner.os }}"
+          Write-Host "User: $env:USERNAME"
+          Write-Host "Shell: $PSVersionTable.PSEdition"
+          Write-Host "OS Version:"
+          systeminfo | Select-String "OS Name","OS Version"
