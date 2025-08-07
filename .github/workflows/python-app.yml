@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Debug runner environment
         run: |
-          echo "Runner name: ${{ runner.name }}"
+          echo "Runner name: ${{ runner.name }} "
           echo "Runner OS: ${{ runner.os }}"
           echo "User: $(whoami)"
           echo "Shell: $SHELL"
