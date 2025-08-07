@@ -1,11 +1,13 @@
 name: Test Self-Hosted EC2 Runner
 
 on:
-  workflow_dispatch:  # Allows manual triggering from the GitHub UI
+  push:            # Trigger on any code push to any branch
+    branches:
+      - "main"
 
 jobs:
   test-ec2-runner:
-    runs-on: self-hosted  # Make sure your runner was registered with just "self-hosted" label
+    runs-on: self-hosted  # Use your self-hosted EC2 runner
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
